@@ -97,3 +97,8 @@ global:
 
   operator:
     watchdogCanPatchPodLabels: false
+
+  # Enables the Dapr CRDs (dapr-crds) chart to be included in the Dapr chart as a dependency
+  daprCRDs:
+    enabled: false
+    resourcePolicy: keep # Keep the CRDs when the chart is uninstalled

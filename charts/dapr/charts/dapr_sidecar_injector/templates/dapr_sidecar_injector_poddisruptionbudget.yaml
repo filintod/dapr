@@ -14,6 +14,8 @@ metadata:
     {{- range $key, $value := .Values.global.k8sLabels }}
     {{ $key }}: {{ tpl $value $ }}
     {{- end }}
+  annotations:
+    {{ include "dapr.hook-annotations-dapr-control-plane" . | nindent 4 | trim }}
 spec:
 {{- if .Values.global.ha.disruption.minimumAvailable }}
   minAvailable: {{ .Values.global.ha.disruption.minimumAvailable }}

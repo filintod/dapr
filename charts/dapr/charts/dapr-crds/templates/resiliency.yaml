@@ -1,11 +1,11 @@
-
+{{ if .Values.global.daprCRDs.enabled }}
 ---
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.5.0
-  creationTimestamp: null
+    {{ include "dapr.hook-annotations-crds" . | nindent 4 | trim }}
   name: resiliencies.dapr.io
   labels:
     app.kubernetes.io/part-of: "dapr"
@@ -132,4 +132,4 @@ spec:
         type: object
     served: true
     storage: true
-
+{{ end }}

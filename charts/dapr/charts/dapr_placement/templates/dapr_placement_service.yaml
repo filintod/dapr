@@ -16,6 +16,7 @@ metadata:
     prometheus.io/port: "{{ .Values.global.prometheus.port }}"
     prometheus.io/path: "/"
     {{- end }}
+    {{ include "dapr.hook-annotations-dapr-control-plane" . | nindent 4 | trim }}
   {{- if .Values.service.annotations }}
   {{- .Values.service.annotations | toYaml | nindent 4 }}
   {{- end }}

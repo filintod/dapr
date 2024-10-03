@@ -8,6 +8,8 @@ metadata:
     {{- range $key, $value := .Values.global.k8sLabels }}
     {{ $key }}: {{ tpl $value $ }}
     {{- end }}
+  annotations:
+    {{ include "dapr.hook-annotations-dapr-control-plane" . | nindent 4 | trim }}
 spec:
   {{- $replicas := include "dapr_scheduler.get-replicas" . }}
   replicas: {{ $replicas }}

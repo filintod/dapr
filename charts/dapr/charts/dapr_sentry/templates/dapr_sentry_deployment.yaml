@@ -8,6 +8,8 @@ metadata:
     {{- range $key, $value := .Values.global.k8sLabels }}
     {{ $key }}: {{ tpl $value $ }}
     {{- end }}
+  annotations:
+    {{ include "dapr.hook-annotations-dapr-control-plane" . | nindent 4 | trim }}
 {{ if and .Values.tls.issuer.certPEM (and .Values.tls.issuer.keyPEM .Values.tls.root.certPEM) }}
 data:
   issuer.crt: {{ b64enc .Values.tls.issuer.certPEM | trim }}
